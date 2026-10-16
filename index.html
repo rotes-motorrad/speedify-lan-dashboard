@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b111a"><title>Speedify · Live traffic</title>
+<style>
+:root{color-scheme:dark;--bg:#0b111a;--panel:#111b28;--line:#253247;--text:#eff5ff;--muted:#a4b4c9;--down:#53dfb2;--up:#af9aff;--ping:#ffd17c}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:15px}main{max-width:1280px;margin:auto;padding:34px 32px 22px}header{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:32px}.brand{display:flex;align-items:center;gap:15px}.brand-icon{display:grid;place-items:center;width:44px;height:44px;border:1px solid #346451;border-radius:14px;background:#142e29;color:var(--down)}h1{font-size:23px;letter-spacing:-.7px;margin:0 0 4px;font-weight:650}p{margin:0}header p{color:var(--muted);font-size:13px}.server{text-align:right}.server strong{font:500 15px ui-monospace,monospace}.server p{margin-top:5px;font-size:12px}.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid #345747;background:#12281f;color:#9ae9bd;border-radius:99px;padding:5px 10px;font-size:11px;margin-left:12px;font-weight:600;letter-spacing:.5px}.pill:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}.pill.warn{background:#302619;border-color:#665336;color:var(--ping)}.notice{padding:12px 16px;border:1px solid #665336;background:#251e15;border-radius:10px;color:#ffe0a6;margin:0 0 18px;font-size:13px}.notice[hidden]{display:none}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}.metric{background:linear-gradient(125deg,#152334,#101925);border:1px solid var(--line);border-radius:16px;padding:22px 24px 20px}.label{color:var(--muted);font-size:12px;font-weight:550;text-transform:uppercase;letter-spacing:1.2px;display:flex;align-items:center;gap:8px}.dot{width:7px;height:7px;background:var(--down);border-radius:50%;display:inline-block}.up .dot{background:var(--up)}.latency .dot{background:var(--ping)}.value{font-size:54px;line-height:1.25;letter-spacing:-2px;font-weight:550;font-variant-numeric:tabular-nums;margin-top:11px;white-space:nowrap}.value small{font-size:15px;color:var(--muted);letter-spacing:0;margin-left:7px;font-weight:400}.metric p{font-size:12px;color:var(--muted);margin-top:9px}.down .value{color:var(--down)}.up .value{color:var(--up)}.latency .value{color:var(--ping)}.panel{border:1px solid var(--line);border-radius:16px;background:var(--panel);overflow:hidden;margin-bottom:20px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:23px 24px 5px}h2{font-size:16px;font-weight:580;margin:0 0 6px;letter-spacing:-.3px}.sub{font-size:12px;color:var(--muted);line-height:1.6}.controls{display:flex;align-items:center;gap:12px}.range{display:flex;background:#0c1420;border:1px solid var(--line);border-radius:8px;padding:3px}button{font:inherit;color:var(--muted);background:transparent;border:0;cursor:pointer;padding:6px 10px;border-radius:5px;font-size:12px}button:hover{color:var(--text);background:#243246}button.active{color:var(--text);background:#2a3a50}button:focus-visible{outline:2px solid var(--down);outline-offset:2px}.pause{border:1px solid var(--line);padding:9px 11px;min-width:68px}.legend{display:flex;gap:19px;align-items:center;padding:12px 24px 0;color:var(--muted);font-size:12px}.legend span{display:flex;align-items:center;gap:7px}.swatch{height:3px;width:15px;background:var(--down);border-radius:2px}.swatch.up{background:var(--up)}.chart{position:relative;margin:10px 14px 4px;height:258px}.chart.ping{height:118px;margin-top:4px}.chart canvas{width:100%;height:100%;display:block}.chart-label{padding:8px 24px 0;color:var(--muted);font-size:11px;letter-spacing:.3px}.tooltip{position:absolute;pointer-events:none;background:#0a111f;border:1px solid #41516b;padding:8px 10px;border-radius:8px;color:var(--text);font:12px ui-monospace,monospace;white-space:pre;box-shadow:0 4px 16px #0007;z-index:2}.panel-foot{border-top:1px solid var(--line);padding:12px 24px;display:flex;justify-content:space-between;gap:15px;font-size:12px;color:var(--muted)}.links-head{display:flex;justify-content:space-between;align-items:center;margin:26px 0 12px}.links-head h2{margin:0}.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.link{padding:17px 20px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}.link-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:15px}.link h3{font-size:13px;font-weight:550;margin:0;overflow-wrap:anywhere}.link-state{font-size:11px;color:var(--down);white-space:nowrap}.link-state.off{color:var(--muted)}.link-values{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.link-values strong{font:500 17px ui-monospace,monospace}.link-values p{font-size:10px;color:var(--muted);margin-top:6px}.empty{color:var(--muted);font-size:13px;padding:20px;border:1px dashed var(--line);border-radius:12px}.footer{display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:11px;line-height:1.7;margin-top:24px}.dim{color:var(--muted)}@media(min-width:1400px){main{padding-top:48px}}@media(max-width:760px){main{padding:23px 17px}header{align-items:flex-start;gap:15px;margin-bottom:24px}.brand-icon{display:none}h1{font-size:21px}.server strong{font-size:12px}.pill{margin:8px 0 0}.metrics{gap:9px}.metric{padding:17px 12px;border-radius:12px}.value{font-size:35px;letter-spacing:-1px}.value small{font-size:11px;margin-left:3px}.label{font-size:10px;letter-spacing:.8px}.metric p{font-size:10px;line-height:1.6}.panel-head{padding:18px 17px 5px;align-items:flex-start;flex-wrap:wrap}.controls{gap:8px}.chart{height:230px;margin-left:4px;margin-right:4px}.legend{padding-left:17px}.panel-foot{padding:12px 17px;flex-wrap:wrap}.links-head{align-items:flex-start;gap:12px}.links-head .sub{text-align:right;max-width:190px}.footer{flex-direction:column;gap:4px}}
+.legend{flex-wrap:wrap;row-gap:8px}
+.link-peak-caption{font-size:10px;color:var(--muted);margin:15px 0 8px;padding-top:12px;border-top:1px solid var(--line)}.link-peaks{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font:12px ui-monospace,monospace}.link-peaks .download{color:var(--down)}.link-peaks .upload{color:var(--up)}
+</style>
+</head>
+<body><main>
+<header><div class="brand"><div class="brand-icon" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 25 25" fill="none"><path d="M3 16L8 10L12 14L21 5M16 5H21V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h1>Speedify</h1><p>Live connection monitor</p></div></div><div class="server"><div><strong id="server">Connecting…</strong><span id="badge" class="pill warn">WAITING</span></div><p id="datacenter">Waiting for the Pi</p></div></header>
+<div id="demo" class="notice" hidden>DEMO MODE · All values below are simulated, not measurements of your connection.</div>
+<div id="notice" class="notice" role="status" hidden></div>
+<section class="metrics" aria-label="Current measurements">
+<div class="metric down"><div class="label"><span class="dot"></span>Download</div><div class="value"><span id="down">—</span><small>Mbps</small></div><p>All traffic through Speedify</p></div>
+<div class="metric up"><div class="label"><span class="dot"></span>Upload</div><div class="value"><span id="up">—</span><small>Mbps</small></div><p>All traffic through Speedify</p></div>
+<div class="metric latency"><div class="label"><span class="dot"></span>Internet ping</div><div class="value"><span id="ping">—</span><small>ms</small></div><p id="pingTarget">From this Pi to 1.1.1.1</p></div>
+</section>
+<section class="panel" aria-label="Traffic history"><div class="panel-head"><div><h2>Your connection, in real time</h2><p class="sub">Phone speed tests and the rest of your household traffic, together.</p></div><div class="controls"><div class="range" aria-label="History window"><button data-window="120" aria-pressed="false">2 min</button><button data-window="300" class="active" aria-pressed="true">5 min</button><button data-window="900" aria-pressed="false">15 min</button></div><button class="pause" id="pause" aria-pressed="false">Pause</button></div></div>
+<div class="legend"><span><i class="swatch"></i>Download</span><span><i class="swatch up"></i>Upload</span><span id="peak" style="margin-left:auto">Peak ↓ — Mbps · ↑ — Mbps</span></div>
+<div class="chart"><canvas id="trafficChart" role="img" aria-label="Scrolling download and upload history in megabits per second"></canvas><div id="tooltip" class="tooltip" hidden></div></div>
+<div class="chart-label">INTERNET PING · ms</div><div class="chart ping"><canvas id="pingChart" role="img" aria-label="Internet ping history in milliseconds"></canvas></div>
+<div class="panel-foot"><span id="historyNote">Collecting history…</span><span>Updates every second · <span id="updated">waiting</span></span></div></section>
+<div class="links-head"><h2>Individual connections</h2><p class="sub">Link traffic and best tunnel RTT to Speedify</p></div>
+<section id="links" class="links" aria-label="Individual internet connections"><div class="empty">Waiting for live connection details…</div></section>
+<footer class="footer"><p>Monitoring is passive. No speed tests are started by this dashboard.<br>Traffic that bypasses Speedify is excluded. Link totals may include transport overhead.</p><p>Local network dashboard · 15 minutes of history in memory<br>Internet ping uses a small ICMP probe; its destination differs from your phone’s speed test.</p></footer>
+</main>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const view={history:[],links:[],seq:0,window:300,paused:false,pauseEnd:null,pausedHistory:[],lastOK:0,now:Date.now()/1000,hover:null};
+const format=(n,d=1)=>n==null||!Number.isFinite(n)?'—':n.toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d});
+const timeLabel=t=>new Date(t*1000).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+function setNotice(message){$('notice').textContent=message||'';$('notice').hidden=!message;}
+function updateCards(data){
+ $('down').textContent=format(data.down);$('up').textContent=format(data.up);$('ping').textContent=format(data.ping,0);
+ $('pingTarget').textContent='From this Pi to '+data.ping_target;$('ping').parentElement.title=data.ping_note||'ICMP round-trip time';
+ $('server').textContent=data.server.tag||data.server.friendlyName||'No server reported';
+ $('datacenter').textContent=(data.state==='CONNECTED'?'Current server':'Last reported server')+' · '+(data.server.dataCenter||'—');
+ $('badge').textContent=data.live?'LIVE':data.state.replaceAll('_',' ');$('badge').classList.toggle('warn',!data.live);
+ $('demo').hidden=!data.demo;setNotice(data.message);$('updated').textContent=timeLabel(data.now);
+ view.links=data.links;
+}
+function connectionPeaks(){
+ const end=view.paused?view.pauseEnd:view.now,start=end-view.window;
+ const peaks=new Map();
+ for(const point of (view.paused?view.pausedHistory:view.history)){
+  if(point.t<start||point.t>end)continue;
+  for(const link of point.links||[]){
+   if(!peaks.has(link.id))peaks.set(link.id,{id:link.id,name:link.name,down:null,up:null});
+   const peak=peaks.get(link.id);peak.name=link.name||peak.name;
+   for(const key of ['down','up'])if(Number.isFinite(link[key])&&link[key]>=0)peak[key]=peak[key]==null?link[key]:Math.max(peak[key],link[key]);
+  }
+ }
+ return peaks;
+}
+function renderLinks(){
+ const container=$('links');container.replaceChildren();
+ const peaks=connectionPeaks(),links=new Map(view.links.map(link=>[link.id,{...link,fresh:true}]));
+ // Keep a previously active adapter visible while it still has history in this window.
+ for(const [id,peak] of peaks)if(!links.has(id))links.set(id,{id,name:peak.name||id,down:null,up:null,ping:null,connected:false,sleeping:false,fresh:false});
+ for(const link of links.values()){
+  const card=document.createElement('div');card.className='link';
+  const top=document.createElement('div');top.className='link-top';
+  const title=document.createElement('h3');title.textContent=link.name;title.title=link.id;
+  const status=document.createElement('span');status.className='link-state'+(!link.connected||link.sleeping?' off':'');status.textContent=!link.fresh?'No fresh data':!link.connected?'Disconnected':link.sleeping?'Sleeping':'Connected';top.append(title,status);card.append(top);
+  const values=document.createElement('div');values.className='link-values';
+  for(const [value,label,digits] of [[link.down,'Download · Mbps',1],[link.up,'Upload · Mbps',1],[link.ping,'Tunnel RTT · ms',0]]){const cell=document.createElement('div');const strong=document.createElement('strong');strong.textContent=format(value,digits);const p=document.createElement('p');p.textContent=label;cell.append(strong,p);values.append(cell);}card.append(values);
+  const caption=document.createElement('p');caption.className='link-peak-caption';caption.textContent='Peaks · '+view.window/60+' min'+(view.paused?' · paused window':'');card.append(caption);
+  const peak=peaks.get(link.id),peakRow=document.createElement('div');peakRow.className='link-peaks';
+  for(const [key,arrow,cls] of [['down','↓','download'],['up','↑','upload']]){const span=document.createElement('span');span.className=cls;span.textContent=arrow+' '+format(peak?peak[key]:null)+' Mbps';span.title=key==='down'?'Peak download in the selected window':'Peak upload in the selected window';peakRow.append(span);}card.append(peakRow);container.append(card);
+ }
+ if(!links.size){const empty=document.createElement('div');empty.className='empty';empty.textContent='No connection details or history available yet.';container.append(empty);}
+}
+function chart(id,keys,colors,unit){
+ const canvas=$(id),rect=canvas.getBoundingClientRect(),ratio=Math.min(window.devicePixelRatio||1,2);
+ if(!rect.width||!rect.height)return;canvas.width=Math.round(rect.width*ratio);canvas.height=Math.round(rect.height*ratio);
+ const ctx=canvas.getContext('2d');ctx.scale(ratio,ratio);
+ const W=rect.width,H=rect.height,left=52,right=19,top=12,bottom=27,w=W-left-right,h=H-top-bottom;
+ const end=view.paused?view.pauseEnd:view.now,start=end-view.window;
+ const data=(view.paused?view.pausedHistory:view.history).filter(p=>p.t>=start&&p.t<=end);
+ let maximum=unit==='ms'?50:10;for(const p of data)for(const k of keys)if(p[k]!=null)maximum=Math.max(maximum,p[k]*1.15);
+ const magnitude=10**Math.floor(Math.log10(maximum));const nice=[1,2,3,5,10].find(n=>n*magnitude>=maximum)||10;maximum=nice*magnitude;
+ const x=t=>left+(t-start)/view.window*w,y=v=>top+h-v/maximum*h;
+ ctx.font='10px ui-monospace, monospace';ctx.textAlign='right';ctx.fillStyle='#91a3bb';ctx.lineWidth=1;
+ for(let i=0;i<=4;i++){const Y=top+h-i*h/4;ctx.strokeStyle='#233146';ctx.beginPath();ctx.moveTo(left,Y);ctx.lineTo(W-right,Y);ctx.stroke();ctx.fillText(format(maximum*i/4,maximum<10?1:0),left-9,Y+4);}
+ ctx.textAlign='center';for(let i=0;i<=4;i++){const T=start+view.window*i/4;ctx.fillText(new Date(T*1000).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}),x(T),H-7);}
+ // Null samples and missed intervals break the line; an outage is not drawn as zero.
+ ctx.save();ctx.beginPath();ctx.rect(left,top,w,h);ctx.clip();
+ keys.forEach((key,index)=>{ctx.strokeStyle=colors[index];ctx.lineWidth=id==='trafficChart'?2.2:1.6;ctx.lineJoin='round';ctx.beginPath();let previous=null;for(const p of data){if(p[key]==null){previous=null;continue;}const X=x(p.t),Y=y(p[key]);if(previous===null||p.t-previous>2.5)ctx.moveTo(X,Y);else ctx.lineTo(X,Y);previous=p.t;}ctx.stroke();});
+ if(view.hover!=null&&id==='trafficChart'){ctx.strokeStyle='#8293aa';ctx.setLineDash([3,4]);ctx.beginPath();ctx.moveTo(view.hover,top);ctx.lineTo(view.hover,top+h);ctx.stroke();ctx.setLineDash([]);}ctx.restore();
+ if(id==='trafficChart'){
+  const validDown=data.filter(p=>p.down!=null).map(p=>p.down);
+  const validUp=data.filter(p=>p.up!=null).map(p=>p.up);
+  $('peak').textContent='Peak ↓ '+format(validDown.length?Math.max(...validDown):null)+' Mbps · ↑ '+format(validUp.length?Math.max(...validUp):null)+' Mbps';
+  if(view.hover!=null&&data.length){const target=start+(view.hover-left)/w*view.window;let point=data.reduce((best,p)=>Math.abs(p.t-target)<Math.abs(best.t-target)?p:best,data[0]);const tip=$('tooltip');tip.textContent=timeLabel(point.t)+'\n↓ '+format(point.down)+' Mbps  ↑ '+format(point.up)+' Mbps';tip.style.left=Math.min(Math.max(view.hover+10,2),W-240)+'px';tip.style.top='15px';tip.hidden=false;}
+ }
+}
+function render(){chart('trafficChart',['down','up'],['#53dfb2','#af9aff'],'Mbps');chart('pingChart',['ping'],['#ffd17c'],'ms');renderLinks();$('historyNote').textContent=view.paused?'Chart paused · current numbers remain live':'Last '+view.window/60+' minutes · gaps indicate unavailable readings';}
+document.querySelectorAll('[data-window]').forEach(button=>button.addEventListener('click',()=>{view.window=Number(button.dataset.window);document.querySelectorAll('[data-window]').forEach(b=>{b.classList.toggle('active',b===button);b.setAttribute('aria-pressed',String(b===button));});render();}));
+$('pause').addEventListener('click',()=>{view.paused=!view.paused;if(view.paused){view.pauseEnd=view.now;view.pausedHistory=view.history.slice();}else{view.pauseEnd=null;view.pausedHistory=[];}$('pause').textContent=view.paused?'Resume':'Pause';$('pause').setAttribute('aria-pressed',String(view.paused));render();});
+$('trafficChart').addEventListener('pointermove',event=>{view.hover=event.clientX-event.currentTarget.getBoundingClientRect().left;render();});
+$('trafficChart').addEventListener('pointerleave',()=>{view.hover=null;$('tooltip').hidden=true;render();});
+window.addEventListener('resize',render);
+async function poll(){
+ const started=performance.now();
+ try{
+  const response=await fetch('/api/live?after='+view.seq,{cache:'no-store',signal:AbortSignal.timeout(4000)});if(!response.ok)throw new Error('HTTP '+response.status);
+  const data=await response.json();view.lastOK=Date.now();view.now=data.now;
+  if(data.seq<view.seq)view.history=[]; // monitor restarted: accept the new cursor and history
+  for(const p of data.history){if(!view.history.length||p.seq>view.history[view.history.length-1].seq)view.history.push(p);}
+  view.history=view.history.filter(p=>p.t>=data.now-900).slice(-900);view.seq=data.seq;
+  updateCards(data);render();
+ }catch(error){$('badge').textContent='OFFLINE';$('badge').classList.add('warn');$('down').textContent=$('up').textContent=$('ping').textContent='—';view.links=[];view.now=Date.now()/1000;setNotice('Dashboard connection lost. Retrying automatically.');render();}
+ setTimeout(poll,Math.max(200,1000-(performance.now()-started)));
+}
+poll();
+</script>
+</body></html>
