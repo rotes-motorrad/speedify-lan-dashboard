@@ -6,6 +6,10 @@ Built for headless Raspberry Pi routers and other Linux bonding gateways. The ap
 
 **Version 1.1.0 · Unofficial community project.**
 
+![Speedify LAN Dashboard showing substantial traffic, ping changes, and per-connection peaks](docs/images/dashboard-active.png)
+
+*A five-minute window of household traffic, with observed combined peaks of 304.8 Mbps download and 78.8 Mbps upload. Each connection retains its own peaks below the graph.*
+
 ![Speedify LAN Dashboard showing live throughput, internet ping, and individual connection peaks](docs/images/dashboard.png)
 
 *Live dashboard during light household traffic, with a five-minute window selected. Peaks show earlier activity even when current traffic is idle.*
