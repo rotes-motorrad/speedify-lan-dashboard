@@ -14,6 +14,28 @@ Built for headless Raspberry Pi routers and other Linux bonding gateways. The ap
 
 *Live dashboard during light household traffic, with a five-minute window selected. Peaks show earlier activity even when current traffic is idle.*
 
+## Example: one gateway for the whole home
+
+This is the home setup that inspired the dashboard. A Raspberry Pi 4 runs Speedify and shares its bonded connection with an Orbi mesh system serving roughly 80 devices.
+
+```mermaid
+flowchart TD
+    starlink["Starlink internet"] -->|Ethernet via USB adapter|pi["Headless Raspberry Pi 4: Speedify + dashboard"]
+    cellular["Nighthawk cellular modem"] -->|Ethernet via USB adapter|pi
+    pi -->|Shared connection via built-in Ethernet|orbi["Orbi mesh router and Wi-Fi"]
+    orbi --> devices["Home network: about 80 devices"]
+    orbi --- browser["Phone or computer on the home network"]
+    browser -. View live dashboard over LAN .-> pi
+```
+
+Speedify on the Pi combines the available internet links and provides automatic failover for the shared connection. The household's devices use the connection through Orbi without running Speedify individually.
+
+The Pi can stay in a cabinet without a monitor or keyboard. Open the dashboard from a phone or computer on the home network to see total traffic, each link's contribution, latency, and recent peaks. This makes it easier to investigate a slowdown or a link that stopped carrying traffic, even after the busy period has passed.
+
+### The same idea in an RV
+
+An RV could use the same arrangement with its own Wi-Fi router: Starlink and cellular feed the Pi, which shares the bonded connection with onboard devices. Automatic failover would reduce the need to switch networks manually when one source becomes unavailable while the other remains connected. The dashboard can be viewed on an existing phone or laptop, so a dedicated monitor or workstation is unnecessary.
+
 ## What it shows
 
 | View | Measurements |
