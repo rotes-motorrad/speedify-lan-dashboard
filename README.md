@@ -6,6 +6,10 @@ Built for headless Raspberry Pi routers and other Linux bonding gateways. The ap
 
 **Version 1.1.0 · Unofficial community project.**
 
+![Speedify LAN Dashboard showing live throughput, internet ping, and individual connection peaks](docs/images/dashboard.png)
+
+*Live dashboard during light household traffic, with a five-minute window selected. Peaks show earlier activity even when current traffic is idle.*
+
 ## What it shows
 
 | View | Measurements |
